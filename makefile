@@ -5,3 +5,4 @@ run: stat
 clean:
 	rm stat
 	rm -f *~
+
