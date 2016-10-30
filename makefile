@@ -4,4 +4,4 @@ run:
 	./stat
 clean:
 	rm main
-  rm *~
+	rm *~
