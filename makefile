@@ -1,7 +1,7 @@
 compile:
-	gcc -g stat.c -o stat
-run:
+	gcc stat.c -o stat
+run: stat
 	./stat
 clean:
-	rm main
+	rm stat
 	rm *~
