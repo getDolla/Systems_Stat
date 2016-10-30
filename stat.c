@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> 
-#include <errno.h> 
+#include <string.h>
+#include <errno.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <time.h>
- 
+
 void printStat( char * file ){
     if( file == NULL ) {
         printf( "No filename entered!" );
@@ -18,7 +18,7 @@ void printStat( char * file ){
     if( stat( file, &filestat ) == 0 )
     {
         printf( "File: %s\n", file ); //name
-        printf("File Size: %u bytes\n", filestat.st_size ); //size
+        printf("File Size: %li bytes\n", filestat.st_size ); //size
         printf("Access Permissions of file: %o\n", filestat.st_mode); //permissions
         printf("Time last accessed: %s\n", ctime( &(filestat.st_atime) )); //time last accessed
     }
