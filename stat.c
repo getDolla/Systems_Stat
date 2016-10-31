@@ -14,6 +14,8 @@ char* printPermissions( int n ) {
   while( n > 0 ) {
     int x = n % 8;
 
+    printf( "%d", x );
+    
     c[i--] = '-';
     c[i--] = '-';
     c[i--] = '-';
