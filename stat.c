@@ -7,6 +7,36 @@
 #include <sys/types.h>
 #include <time.h>
 
+char* printPermissions( int n ) {
+  char * c = (char*) malloc( 9 * sizeof(char) );
+  int i = 8;
+
+  while( n > 0 ) {
+    int x = n % 8;
+
+    c[i--] = '-';
+    c[i--] = '-';
+    c[i--] = '-';
+
+    if( i%2 == 1 ) {
+       c[i+3] = 'x';
+    }
+
+    if( (i == 2) || (i == 3) || (i == 6) || (i == 7) ) {
+      c[i+2] = 'w';
+    }
+
+    if( i >= 4 ) {
+      c[i+1] = 'r';
+    }
+
+    n /= 8;
+  }
+    
+  return c;
+}
+
+
 void printStat( char * file ){
     if( file == NULL ) {
         printf( "No filename entered!" );
@@ -19,7 +49,7 @@ void printStat( char * file ){
     {
         printf( "File: %s\n", file ); //name
         printf("File Size: %li bytes\n", filestat.st_size ); //size
-        printf("Access Permissions of file: %o\n", filestat.st_mode); //permissions
+        printf("Access Permissions of file: %s\n", printPermissions(filestat.st_mode)); //permissions
         printf("Time last accessed: %s\n", ctime( &(filestat.st_atime) )); //time last accessed
     }
     else {
