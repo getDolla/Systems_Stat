@@ -11,24 +11,24 @@ char* printPermissions( int n ) {
   char * c = (char*) malloc( 9 * sizeof(char) );
   int i = 8;
 
-  while( n > 0 ) {
+  while( n > 100 ) {
     int x = n % 8;
 
-    printf( "%d", x );
+    //printf( "%d", x );
     
     c[i--] = '-';
     c[i--] = '-';
     c[i--] = '-';
 
-    if( i%2 == 1 ) {
+    if( x%2 == 1 ) { //execute permission
        c[i+3] = 'x';
     }
 
-    if( (i == 2) || (i == 3) || (i == 6) || (i == 7) ) {
+    if( (x == 2) || (x == 3) || (x == 6) || (x == 7) ) { //write permission
       c[i+2] = 'w';
     }
 
-    if( i >= 4 ) {
+    if( x >= 4 ) { //read permission
       c[i+1] = 'r';
     }
 
@@ -83,7 +83,7 @@ void printStat( char * file ){
         fmt_SI(filestat.st_size, 'B', p);
         printf("File Size: %s\n", p);
         // permissions:
-        printf("Access Permissions of file: %o\n", filestat.st_mode);
+        printf("Access Permissions of file: %s\n", printPermissions( filestat.st_mode ) );
         // time last accessed:
         printf("Time last accessed: %s\n", ctime( &(filestat.st_atime) ));
     } else {
